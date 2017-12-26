@@ -1,4 +1,4 @@
-FROM multiarch/alpine:amd64-3.6
+FROM multiarch/alpine:amd64-v3.6
 
 RUN echo 'syncthing:x:1000:1000::/var/syncthing:/sbin/nologin' >> /etc/passwd \
     && echo 'syncthing:!::0:::::' >> /etc/shadow \
