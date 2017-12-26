@@ -5,10 +5,10 @@ env:
     global:
         - DOCKER_REPO=clook/syncthing
     matrix:
-        - GO_ARCH=386      TAG_ARCH=i386
-        - GO_ARCH=amd64    TAG_ARCH=amd64
-        - GO_ARCH=arm      TAG_ARCH=armhf
-        - GO_ARCH=arm64    TAG_ARCH=arm64
+        - GO_ARCH=386      VERSION=v3.6     TAG_ARCH=i386
+        - GO_ARCH=amd64    VERSION=v3.6     TAG_ARCH=amd64
+        - GO_ARCH=arm      VERSION=v3.6     TAG_ARCH=armhf
+        - GO_ARCH=arm64    VERSION=v3.6     TAG_ARCH=arm64
 
 before_script:
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
