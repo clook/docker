@@ -1,0 +1,18 @@
+sudo: required
+services: docker
+language: bash
+env:
+    global:
+        - DOCKER_REPO=clook/syncthing
+    matrix:
+        - GO_ARCH=386      TAG_ARCH=i386
+        - GO_ARCH=amd64    TAG_ARCH=amd64
+        - GO_ARCH=arm      TAG_ARCH=armhf
+        - GO_ARCH=arm64    TAG_ARCH=arm64
+
+before_script:
+  - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+script:
+  - sudo ./update.sh -a "$GO_ARCH" -v "$VERSION" -d "$DOCKER_REPO" -t "$TAG_ARCH"
+after_success:
+  - if [[ $TRAVIS_PULL_REQUEST == 'false' ]]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker push $DOCKER_REPO; fi
