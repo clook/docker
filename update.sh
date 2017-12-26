@@ -27,6 +27,7 @@ ROOTFS=rootfs
 sed -i.bak "s/ENV release=.*/ENV release=\"$VERSION\"/;s/ENV arch=.*/ENV arch=\"$ARCH\"/;s@FROM multiarch/alpine:amd64@FROM multiarch/alpine:${TAG_ARCH}@" Dockerfile
 
 
+VERSION=${VERSION:-latest}
 # build
 docker build -t "${DOCKER_REPO}:${TAG_ARCH}-${VERSION}" .
 
